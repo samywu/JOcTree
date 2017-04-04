@@ -26,7 +26,7 @@ function createOcTreeFromImage(A::Array{UInt8,3},tol);
 		end
 	end
 
-	S = sparse3(round(Int64,ii),round(Int64,jj),round(Int64,kk),round(Int64,bsz),[m1,m2,m3])
+	S = JOcTree.sparse3(round(Int64,ii),round(Int64,jj),round(Int64,kk),round(Int64,bsz),[m1,m2,m3])
 	bszmin = maxbsz
 	while true
 		println("max blksz = ",maximum(S.SV)," min blksz = ",minimum(nonzeros(S))," number of cells = ",nnz(S))
@@ -119,7 +119,7 @@ function refineOcTreeTol(S,A,tol,bszmin)
 	tk  = tk[1:cnt-1]
 	tb  = tb[1:cnt-1]
 	
-	Sr = sparse3(round(Int64,ti),round(Int64,tj),round(Int64,tk),round(Int64,tb),[m1,m2,m3])
+	Sr = JOcTree.sparse3(round(Int64,ti),round(Int64,tj),round(Int64,tk),round(Int64,tb),[m1,m2,m3])
 
 	ti,tj,tk,tb = find3(Sr)
 	
